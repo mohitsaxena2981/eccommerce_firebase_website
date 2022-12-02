@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Name FOR Project -->
+    <title>ECommerce App | HTML,CSS,Js,LocalStorage | rMs</title>
+
+    <!-- fonts link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2family=Manrope:wght@200;300;400;500;600;700;800&family=Yeseva+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <!-- style Css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./css/modale.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- navBar -->
+    <nav class="navbar">
+      <!-- logo -->
+
+      <div class="logo">
+        <a href="index.html">
+          <h1>Shopper</h1>
+        </a>
+      </div>
+      <i class="fas fa-bars" id="btn-close-navbar"></i>
+
+      <!-- navBar Content -->
+      <div id="navbar-content" class="navbar-content navbar-hidden">
+        <!-- Search Container -->
+        <div class="search-container">
+          <i class="far fa-search"></i>
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Search..."
+          />
+        </div>
+
+        <!-- Button container -->
+        <div class="btn-container">
+          <button type="button" class="btn-buyer" id="btn-buyer">Buyer</button>
+
+          <button type="button" class="btn-seller" id="btn-seeler">
+            Seller
+          </button>
+          <div id="login-modal">
+            <div class="modal">
+              <div class="top-form">
+                <div class="close-modal"></div>
+              </div>
+              <div class="login-form">
+                <h2>Login With Email</h2>
+                <form action="#">
+                  <input class="form-control" type="text" placeholder="Email" />
+                  <input
+                    class="form-control"
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <button type="button" id="submit-btn" class="submit-btn">
+                    Login
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <script type="text/javascript">
+            $(function () {
+              $("#btn-seeler").click(function () {
+                $("#login-modal").fadeIn().css("display", "flex");
+              });
+
+              $(".close-modal").click(function () {
+                $("#login-modal").fadeOut();
+              });
+            });
+          </script>
+
+          <button type="button" class="btn-shopping-bag" id="btn-shopping-bag">
+            <span class="count-cart">2</span>
+            <i class="far fa-shopping-bag"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <!-- navBar: End -->
+
+    <!-- Container || Main Section -->
+    <div class="container">
+      <main>
+        <section class="some-fun">
+          <section class="filter-sort">
+            <!-- Filter Price -->
+            <div class="for-arrow">
+              <select name="sort" id="sort" class="select">
+                <option value="None">Sort</option>
+                <option value="Maximum">Max Price</option>
+                <option value="Minimum">Min Price</option>
+              </select>
+              <i class="far fa-chevron-down arrow"></i>
+            </div>
+
+            <!-- Filter Categoryes -->
+            <div class="for-arrow">
+              <select class="select" name="filter" id="filter">
+                <option value="None">Filter</option>
+                <option value="Art">Art</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Games">Games</option>
+                <option value="Phones">Phones</option>
+              </select>
+              <i class="far fa-chevron-down arrow"></i>
+            </div>
+          </section>
+
+          <section class="wrap-btn-view">
+            <button id="btnAddProduct" class="btn btn-add">Add Product</button>
+            <section class="list-grid">
+              <button id="btnList" class="btn list" disabled="disabled">
+                <i class="far fa-list"></i>
+              </button>
+
+              <button id="btnGrid" class="btn grid" disabled="disabled">
+                <i class="far fa-border-all active"></i>
+              </button>
+            </section>
+          </section>
+        </section>
+        <!--Section of Products List -->
+        <section id="product-list" class="wrap-product-list">
+          <ul class="product-list"></ul>
+          <section class="empty"></section>
+        </section>
+      </main>
+    </div>
+    <!-- End: Container || Main section -->
+
+    <!-- Cart Section -->
+    <section id="cart-section" class="cart-section cart-hidden">
+      <div class="header-cart">
+        <div>
+          <button id="btn-close-cart" class="close">
+            <i class="far fa-times"></i>
+          </button>
+          <span class="cart-name">Cart</span>
+          <span class="number-items"></span>
+        </div>
+        <div class="remove-all">Remove all</div>
+      </div>
+      <!-- End: header Cart -->
+      <!-- Start: Content Cart -->
+      <div class="content-cart">
+        <!-- 
+            <div class="item" id="">
+            <img src="" alt="" />
+            <div class="info-item">
+                <div class="data">
+                    <h3 class="name-item">
+                    </h3>
+                    <h3 class="price-item">$</h3>
+                </div>
+                <div class="data">
+                    <div class="quentity">
+                        <button class="minus">
+                            <i class="far fa-minus"></i>
+                        </button>
+                        <span class="quantity-number">1</span>
+                        <button class="plus">
+                            <i class="far fa-plus"></i>
+                        </button>
+                    </div>
+                    <h4 class="remove">Remove</h4>
+                </div>
+            </div>
+        </div>
+         -->
+      </div>
+      <!-- End: Content Cart -->
+      <div class="footer-cart">
+        <div class="total">
+          <span>Together to pay</span>
+          <span class="total-number" id="total-number"></span>
+        </div>
+        <!-- End: total Class -->
+        <div class="buy">
+          <button>Add more items</button>
+          <button>Buy</button>
+        </div>
+        <!-- End: buy class -->
+      </div>
+      <!-- End: footer Cart -->
+    </section>
+    <!-- End: Cart Section -->
+
+    <!-- Modal for First Page -->
+    <!--  
+    <section class="modal-starter" id="modal-starter">
+      <div class="modal-overview"></div>
+      <div class="modal-content">
+        <i class="far fa-times" id="modal-starter"></i>
+        <div class="modal-img">
+          <img
+            src="img/Personalization-cuate_1.svg"
+            alt="modal image Personalization cuate"
+          />
+        </div>
+        <h2 class="modal-title">Do you want to continue as?</h2>
+        <div class="modal-btn-container">
+          <button type="button" class="btn-modal-buyer">Buyer</button>
+          <button
+            type="button"
+            class="btn-modal-seller"
+            id="btn-modal-buyer-go"
+          >
+            Seller
+          </button>
+        </div>
+      </div>
+    </section>
+    -->
+    <!-- End: Modal for first page Section -->
+
+    <!-- Modal For Add Products -->
+    <section
+      class="modal-create-product modal-hidden"
+      id="modal-create-product"
+    >
+      <div id="modal-product-overview" class="modal-product-overview"></div>
+      <div class="modal-product-content">
+        <i class="far fa-times" id="close-product-modal"></i>
+
+        <h2 id="add-product-title" class="add-product-title">
+          Add more products to sell more
+        </h2>
+        <div class="add-product-content">
+          <div class="product-form-input">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              class="name-input"
+              placeholder="Name of product..."
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="product-form-input">
+            <label for="category">Category</label>
+            <div class="custom-select">
+              <select class="category-input" id="category">
+                <option disabled value="">Choses Category</option>
+                <option value="Art">Art</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Games">Games</option>
+                <option value="Phones">Phones</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="product-form-input">
+            <label for="product-price">Price</label>
+            <div class="product-price">
+              <i class="fas fa-dollar-sign"></i>
+              <input
+                class="price-input"
+                id="product-price"
+                type="number"
+                min="0.01"
+                value="0.01"
+                step="1"
+                placeholder="Price of product..."
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div class="product-form-input">
+            <label for="image-url">Image</label>
+            <div class="image-url">
+              <i class="fas fa-link"></i>
+              <input
+                class="image-url-input"
+                id="image-url"
+                type="url"
+                placeholder="Image URL of product..."
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div class="product-form-input">
+            <button class="btn-product" id="btn-submit-form-product">
+              Add Product
+            </button>
+          </div>
+        </div>
+        <!-- End: add product content Class -->
+      </div>
+      <!-- End: modal product content Class -->
+    </section>
+    <!-- End: Modal for add Products -->
+
+    <script src="js/logic.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+    <script src="js/script.js"></script>
+    <script src="./fireConfig.js"></script>
+  </body>
+</html>
